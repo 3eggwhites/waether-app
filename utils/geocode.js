@@ -10,8 +10,8 @@ const geoCode = (address, callback) => {
         } else {
             const geolocationData = response.body;
             const data = {
-                lat: geolocationData.features[0].center[1],
-                long: geolocationData.features[0].center[0],
+                lat: geolocationData.features[0].center[0],
+                long: geolocationData.features[0].center[1],
                 location: geolocationData.features[0].place_name
             };
             callback(undefined,data);
