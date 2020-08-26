@@ -2,13 +2,13 @@ const httpClient = require('postman-request');
 
 const geoCode = (address, callback) => {
     const geoLocationUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+encodeURIComponent(address)+'.json?access_token=pk.eyJ1IjoiYXlhbm1hcGJveDEiLCJhIjoiY2tlOHc1c2lsMDBoYTJzcDdubjMzZmV2eiJ9.ZFYvbLTL95rXMZ2p-CFcFQ&limit=1';
-    httpClient.get(geoLocationUrl, {json:true}, (error, response) => {
+    httpClient.get(geoLocationUrl, {json:true}, (error, {body} = {}) => { // passing {body} extracts body from the response object
         if (error) {
             callback('Unable to connect to Mapbox api',undefined);
-        } else if (response.body.features.length === 0) {
+        } else if (body.features.length === 0) {
             callback('Please provide a valid location', undefined);
         } else {
-            const geolocationData = response.body;
+            const geolocationData = body;
             const data = {
                 lat: geolocationData.features[0].center[0],
                 long: geolocationData.features[0].center[1],
