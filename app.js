@@ -4,7 +4,7 @@ const weatherForecast = require('./utils/weatherforecast');
 const searchLocation = process.argv[2];
 
 if (searchLocation) {
-  geoLocation.geoCode(searchLocation, (error, {lat, long, location} = {}) => { // used es6 object destructing to extract only required data from the geoCode function return object
+  geoLocation.geoCode(searchLocation, (error, {lat, long, location} = {}) => { // used es6 object destructing to extract only required data from the geoCode function return object and added default value in case fo any failure
     if (error) {
       return console.log(error);
     }
